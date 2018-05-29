@@ -40,19 +40,18 @@ public class ItemController {
 
     @RequestMapping(value = "/getItemList.do", method = RequestMethod.GET)
     public ModelAndView Info(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
-    		ModelAndView mv, ItemVO itemVO) throws Exception {
-    	mv.setViewName("/itemList");//타일즈 view => 일반 view
+                             ModelAndView mv, ItemVO itemVO) throws Exception {
+        mv.setViewName("/itemList");//타일즈 view => 일반 view
         return mv;
-        
+
     }
 
     @RequestMapping(value = "/index.do", method = RequestMethod.GET)
     public String getItemDetail(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
-                              Model model, ItemVO itemVO) throws Exception {
+                                Model model, ItemVO itemVO) throws Exception {
 
-    	
 
-    	return "index";
+        return "index";
     }
 
 }
