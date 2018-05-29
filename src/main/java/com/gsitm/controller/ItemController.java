@@ -82,39 +82,36 @@ public class ItemController {
 
         String date = "" + year + "" + m + "" + day;
         for(ItemVO item : items){
-            String url2 ="http://data.insight.go.kr:8080/openapi/service/PriceInfo/getPriceInfo?ServiceKey=QuZgRdiKTWvGqdxo5L%2Fp8GgyI%2B8Rhq95smUbZd9SyM4I9mxF47WUeR%2BWaPIvMbPFnYekApVVQ%2FDlZyQgDrddGQ%3D%3D&itemCode="+item.getIc()+"&startDate="+date+"&endDate="+date;
+            String url2 ="http://data.insight.go.kr:8080/openapi/service/PriceInfo/getPriceInfo?ServiceKey=QuZgRdiKTWvGqdxo5L%2Fp8GgyI%2B8Rhq95smUbZd9SyM4I9mxF47WUeR%2BWaPIvMbPFnYekApVVQ%2FDlZyQgDrddGQ%3D%3D&itemCode="+item.getIc()+"&startDate="+date+"&endDate="+date+"pageNo=1&numOfRows=50";
             uri = new URI(url2);
             itemXML = restTemplate.getForObject(uri, String.class);
 
-            JSONObject xmlJSONObj2 = XML.toJSONObject(itemXML).getJSONObject("response");
-
-            if(xmlJSONObj2.has("body")){
-                JSONArray jsonArray = xmlJSONObj2.getJSONObject("body").getJSONObject("items").getJSONArray("item");
-                gson = new Gson();
-                ItemDetailVO[] itemDetailVOs = gson.fromJson(jsonArray.toString(), ItemDetailVO[].class);
-                List<ItemDetailVO> itemsDetail = Arrays.asList(itemDetailVOs);
-                logger.info(itemsDetail.toString());
-                itemService.insertItemDetail(itemsDetail, item.getIc());
+            JSONObject xmlJSONObj2 = XML.toJSONObject(itemXML);
+            if(xmlJSONObj2.has("response")) {
+            	xmlJSONObj2=xmlJSONObj2.getJSONObject("response");
+            	if(xmlJSONObj2.has("body")){
+                    JSONArray jsonArray = xmlJSONObj2.getJSONObject("body").getJSONObject("items").getJSONArray("item");
+                    gson = new Gson();
+                    ItemDetailVO[] itemDetailVOs = gson.fromJson(jsonArray.toString(), ItemDetailVO[].class);
+                    List<ItemDetailVO> itemsDetail = Arrays.asList(itemDetailVOs);
+                    logger.info(itemsDetail.toString());
+                    itemService.insertItemDetail(itemsDetail, item.getIc());
+                }
             }
-
-
-
+            
         }
 
         //itemService.insertItemDetail();
 
     }
 
-    @RequestMapping(value = "/getItemDetail.do", method = RequestMethod.GET)
-    public void getItemDetail(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
+    @RequestMapping(value = "/index.do", method = RequestMethod.GET)
+    public String getItemDetail(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
                               Model model, ItemVO itemVO) throws Exception {
 
+    	
 
-
-
-
-
-
+    	return "index";
     }
 
 }

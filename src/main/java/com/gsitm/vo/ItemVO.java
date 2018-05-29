@@ -17,7 +17,8 @@ public class ItemVO implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2717334534840422106L;
+	private static final long serialVersionUID = -140192797149410804L;
+
 
 	@Getter
 	@Setter
