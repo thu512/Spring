@@ -66,5 +66,20 @@ xmlns - 접두사를 명시하지 않고 네임스페이스를 선언하기 위�
 		<property name="order" value="1" />
 	</bean>
 	
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="0" /><!-- 순서를 우선으로 지정 -->
+	</bean>
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tiles-def.xml</value>
+			</list>
+		</property>
+	</bean>
 	
 </beans>

@@ -8,6 +8,7 @@
 		<title>Welcome</title>
 	</head> 
 	<body>
+	안녕
 		<h2>${message}</h2>
 	</body>
 </html>

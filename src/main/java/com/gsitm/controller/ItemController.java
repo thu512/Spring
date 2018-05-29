@@ -24,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.gsitm.service.ItemService;
@@ -38,71 +39,11 @@ public class ItemController {
     private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 
     @RequestMapping(value = "/getItemList.do", method = RequestMethod.GET)
-    public void Info(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
-                     Model model, ItemVO itemVO) throws Exception {
-
-        String serviceKey = "QuZgRdiKTWvGqdxo5L%2Fp8GgyI%2B8Rhq95smUbZd9SyM4I9mxF47WUeR%2BWaPIvMbPFnYekApVVQ%2FDlZyQgDrddGQ%3D%3D";
-
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setReadTimeout(1000 * 60 * 5); // 5분
-        factory.setConnectTimeout(5000);
-        RestTemplate restTemplate = new RestTemplate(factory);
-        String url = "http://data.insight.go.kr:8080/openapi/service/PriceItemList/getPriceItemList?ServiceKey=QuZgRdiKTWvGqdxo5L%2Fp8GgyI%2B8Rhq95smUbZd9SyM4I9mxF47WUeR%2BWaPIvMbPFnYekApVVQ%2FDlZyQgDrddGQ%3D%3D";
-        URI uri = new URI(url);
-
-        String itemXML = restTemplate.getForObject(uri, String.class);
-
-        org.json.JSONArray xmlJSONObj = XML.toJSONObject(itemXML).getJSONObject("response").getJSONObject("body")
-                .getJSONObject("items").getJSONArray("item");
-
-        Gson gson = new Gson();
-        ItemVO[] itemVOs = gson.fromJson(xmlJSONObj.toString(), ItemVO[].class);
-        List<ItemVO> items = Arrays.asList(itemVOs);
-        logger.info(items.toString());
-
-        itemService.insertItem(items);
-
-        Calendar oCalendar = Calendar.getInstance();
-
-        int year = oCalendar.get(Calendar.YEAR);//str.split("-")[0];
-        int month = oCalendar.get(Calendar.MONTH) + 1;
-        String day = "01";
-        String m = "";
-
-        if (month == 1) {
-            m = "12";
-        } else {
-            if (month - 1 < 10) {
-                m = "0" + String.valueOf(month - 1);
-            } else {
-                m = String.valueOf(month - 1);
-            }
-        }
-        logger.info("" + year + "" + m + "" + day);
-
-        String date = "" + year + "" + m + "" + day;
-        for(ItemVO item : items){
-            String url2 ="http://data.insight.go.kr:8080/openapi/service/PriceInfo/getPriceInfo?ServiceKey=QuZgRdiKTWvGqdxo5L%2Fp8GgyI%2B8Rhq95smUbZd9SyM4I9mxF47WUeR%2BWaPIvMbPFnYekApVVQ%2FDlZyQgDrddGQ%3D%3D&itemCode="+item.getIc()+"&startDate="+date+"&endDate="+date+"pageNo=1&numOfRows=50";
-            uri = new URI(url2);
-            itemXML = restTemplate.getForObject(uri, String.class);
-
-            JSONObject xmlJSONObj2 = XML.toJSONObject(itemXML);
-            if(xmlJSONObj2.has("response")) {
-            	xmlJSONObj2=xmlJSONObj2.getJSONObject("response");
-            	if(xmlJSONObj2.has("body")){
-                    JSONArray jsonArray = xmlJSONObj2.getJSONObject("body").getJSONObject("items").getJSONArray("item");
-                    gson = new Gson();
-                    ItemDetailVO[] itemDetailVOs = gson.fromJson(jsonArray.toString(), ItemDetailVO[].class);
-                    List<ItemDetailVO> itemsDetail = Arrays.asList(itemDetailVOs);
-                    logger.info(itemsDetail.toString());
-                    itemService.insertItemDetail(itemsDetail, item.getIc());
-                }
-            }
-            
-        }
-
-        //itemService.insertItemDetail();
-
+    public ModelAndView Info(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
+    		ModelAndView mv, ItemVO itemVO) throws Exception {
+    	mv.setViewName("/itemList");//타일즈 view => 일반 view
+        return mv;
+        
     }
 
     @RequestMapping(value = "/index.do", method = RequestMethod.GET)
