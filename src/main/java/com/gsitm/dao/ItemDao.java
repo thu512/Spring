@@ -1,6 +1,10 @@
 package com.gsitm.dao;
 
-import com.gsitm.vo.ItemDetailVO;
+
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -9,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.gsitm.vo.ItemDetailVO;
 import com.gsitm.vo.ItemVO;
 
 
@@ -39,6 +44,48 @@ public class ItemDao {
         session.saveOrUpdate(itemDetail);
         session.getTransaction().commit();
         session.close();
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<ItemDetailVO> getItemDetailList(String itemCode) {
+
+        Session session = this.sessionFactory2.openSession();
+        org.hibernate.Query query = session.
+                createQuery("from ItemDetailVO where item_code=:itemCode");
+        query.setParameter("itemCode", itemCode);
+        List<ItemDetailVO> itemList = query.list();
+        session.close();
+        
+        return itemList;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<ItemDetailVO> getItemDetailList2() {
+
+        Session session = this.sessionFactory2.openSession();
+        List<ItemDetailVO> itemList = session.createQuery("from ItemDetailVO").list();
+        session.close();
+        
+        return itemList;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public int itemCnt(String itemCode) {
+
+        Session session = this.sessionFactory2.openSession();
+        int count = ((Long)session.createQuery("select count(*) from ItemDetailVO where item_code="+itemCode).uniqueResult()).intValue();
+        session.close();
+        return count;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<ItemVO> getItemList() {
+
+        Session session = this.sessionFactory2.openSession();
+        List<ItemVO> itemList = session.createQuery("from ItemVO").list();
+        session.close();
+        
+        return itemList;
     }
 
 }

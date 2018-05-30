@@ -5,6 +5,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 
 <head>
@@ -121,7 +123,8 @@
             <div class="image"></div>
             <div class="info-container">
                 <div class="name" data-toggle="dropdown" aria-haspopup="true"
-                     aria-expanded="false">John Doe
+                     aria-expanded="false"><sec:authentication property="principal.username"/>
+
                 </div>
                 <div class="email">john.doe@example.com</div>
                 <div class="btn-group user-helper-dropdown">
@@ -129,7 +132,7 @@
                        aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
 
-                        <li><a href="javascript:void(0);"><i
+                        <li><a href="/login.do?logout"><i
                                 class="material-icons">input</i>Sign Out</a></li>
                     </ul>
                 </div>
@@ -145,11 +148,10 @@
                                       class="menu-toggle"> <i class="material-icons">view_list</i> <span>Tables</span>
                 </a>
                     <ul class="ml-menu">
-                        <li><a href="pages/tables/normal-tables.html">분류 리스트</a></li>
-                        <li><a href="pages/tables/jquery-datatable.html">상품 리스트</a>
+                        
+                        <li><a href="/getItemList.do">상품 리스트</a>
                         </li>
-                        <li><a href="pages/tables/editable-table.html">네이버 쇼핑
-                            리스트</a></li>
+                        
                     </ul>
                 </li>
 
@@ -291,60 +293,7 @@
     </div>
 </section>
 
-<!-- Jquery Core Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js"></script>
 
-<!-- Bootstrap Core Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/bootstrap/js/bootstrap.js"></script>
-
-<!-- Select Plugin Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
-<!-- Slimscroll Plugin Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
-<!-- Waves Effect Plugin Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/node-waves/waves.js"></script>
-
-<!-- Jquery CountTo Plugin Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/jquery-countto/jquery.countTo.js"></script>
-
-<!-- Morris Plugin Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/raphael/raphael.min.js"></script>
-<script src="/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.js"></script>
-
-<!-- ChartJs -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/chartjs/Chart.bundle.js"></script>
-
-<!-- Flot Charts Plugin Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.js"></script>
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.resize.js"></script>
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.pie.js"></script>
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.categories.js"></script>
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.time.js"></script>
-
-<!-- Sparkline Chart Plugin Js -->
-<script
-        src="/AdminBSBMaterialDesign-master/plugins/jquery-sparkline/jquery.sparkline.js"></script>
-<!-- Demo Js -->
-<script src="/AdminBSBMaterialDesign-master/js/demo.js"></script>
-
-<!-- Custom Js -->
-<script src="/AdminBSBMaterialDesign-master/js/admin.js"></script>
-<script src="/AdminBSBMaterialDesign-master/js/pages/index.js"></script>
 
 <!-- Jquery Core Js -->
 <script src="/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js"></script>

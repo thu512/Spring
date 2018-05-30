@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Data
 @Entity
-public class ItemVO implements Serializable{
+public class UserVO implements Serializable{
 	/**
 	 * 
 	 */
@@ -22,20 +22,20 @@ public class ItemVO implements Serializable{
 
 	@Getter
 	@Setter
-	@Column(name="row_num")
-	int rn; //리스트 번호
+	@Id
+	@Column(name="id")
+	String id; //리스트 번호
 	
 
 	@Getter
 	@Setter
-	@Id
-	@Column(name="item_code")
-	String ic; //품목 코드
+	@Column(name="password")
+	String pwd; //품목 코드
 
 	@Getter
 	@Setter
-	@Column(name="item_name")
-	String in; //품목 명
+	@Column(name="roll_name")
+	String rn; //품목 명
 
 	
 

@@ -13,26 +13,37 @@ import com.gsitm.vo.ItemVO;
 @Service(value = "itemService")
 public class ItemService {
 
-    @Resource(name = "itemDao")
-    private ItemDao itemDao;
+	@Resource(name = "itemDao")
+	private ItemDao itemDao;
 
-    public void insertItem(List<ItemVO> items) throws Exception {
-        for (ItemVO item : items) {
-            itemDao.insertItem(item);
-        }
-    }
+	public void insertItem(List<ItemVO> items) throws Exception {
+		for (ItemVO item : items) {
+			itemDao.insertItem(item);
+		}
+	}
 
-    public void insertItemDetail(List<ItemDetailVO> items, String ic) throws Exception{
-        for (ItemDetailVO item : items) {
-            item.setIc(ic);
-            itemDao.insertItemDetail(item);
-        }
-    }
+	public void insertItemDetail(List<ItemDetailVO> items, String ic) throws Exception {
+		for (ItemDetailVO item : items) {
+			item.setIc(ic);
+			itemDao.insertItemDetail(item);
+		}
+	}
 
-//	
-//	public BoardVO read(BoardVO boardVO) throws Exception{
-//
-//		BoardVO result = BoardDao.read(boardVO);
-//		return result;
-//	}	
+	// 
+	public List<ItemDetailVO> getItemDetailList(String itemCode) throws Exception {
+		if(itemCode == null) {
+			return itemDao.getItemDetailList2();
+		}else {
+			return itemDao.getItemDetailList(itemCode);
+		}
+	}
+
+	public List<ItemVO> getItemList() throws Exception {
+
+		return itemDao.getItemList();
+	}
+	
+	public int itemCnt(String itemCode) {
+		return itemDao.itemCnt(itemCode);
+	}
 }

@@ -4026,11 +4026,13 @@ section.content {
 /* Bootstrap Select ============================ */
 .bootstrap-select {
   box-shadow: none !important;
-  border-bottom: 1px solid #ddd !important;
+  border-bottom: 1px solid #ddd;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   border-radius: 0; }
+  
+  
   .bootstrap-select .dropdown-toggle:focus, .bootstrap-select .dropdown-toggle:active {
     outline: none !important; }
   .bootstrap-select .bs-searchbox,

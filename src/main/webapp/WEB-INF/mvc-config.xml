@@ -82,4 +82,11 @@ xmlns - 접두사를 명시하지 않고 네임스페이스를 선언하기 위�
 		</property>
 	</bean>
 	
+	<bean
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"
+		id="jsonView">
+		<property name="contentType"
+			value="application/json; charset=UTF-8" />
+	</bean>
+	
 </beans>
