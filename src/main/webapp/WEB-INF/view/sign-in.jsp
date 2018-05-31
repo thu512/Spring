@@ -1,16 +1,19 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 
 
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <a href="/login.do"><img
+                    src="/AdminBSBMaterialDesign-master/img/GS_SHOP_logo.png"
+                    style="width: 250px; height: 90px; margin-top: -20px;"></a>
+            <small>세상에 없는 모든것</small>
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_id" class="form-signin" method="post" action="j_spring_security_check">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                    <div class="msg">Sign in to start your session</div>
+                    <div class="msg">GS SHOP에 오신걸 환영합니다.</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -33,15 +36,15 @@
                             <label for="_spring_security_remember_me">Remember Me</label>
                         </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            <button class="btn btn-block bg-pink waves-effect" type="submit">로그인</button>
                         </div>
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-6">
-                            <a href="sign-up.html">Register Now!</a>
+                            <a href="/AdminBSBMaterialDesign-master/pages/examples/sign-up.html">회원가입!</a>
                         </div>
                         <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Forgot Password?</a>
+                            <a href="/AdminBSBMaterialDesign-master/pages/examples/forgot-password.html">비밀번호를 잊으셨나요?</a>
                         </div>
                     </div>
                 </form>

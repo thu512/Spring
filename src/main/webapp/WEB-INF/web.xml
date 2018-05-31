@@ -81,4 +81,13 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/AdminBSBMaterialDesign-master/pages/examples/404.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/AdminBSBMaterialDesign-master/pages/examples/500.html</location>
+    </error-page>
 </web-app>

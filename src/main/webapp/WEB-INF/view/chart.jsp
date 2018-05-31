@@ -7,7 +7,7 @@
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="card">
 			<div class="header">
-				<h2>현제 평균 제품군 가격</h2>
+				<h2>월별 제품군별 평균 가격</h2>
 
 			</div>
 			<div class="body">

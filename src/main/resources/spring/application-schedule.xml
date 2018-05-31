@@ -25,7 +25,7 @@
 	
 	<task:scheduled-tasks scheduler="scheduler">
 		<!-- 매 월 15일 12시마다 실행 -->
-	    <task:scheduled ref="ExBatchJob" method="doBatch" cron="0 32 14 31 * ?"/>
+	    <task:scheduled ref="ExBatchJob" method="doBatch" cron="0 0 12 15 * ?"/>
 	    
 	</task:scheduled-tasks>	
 </beans>

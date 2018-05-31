@@ -98,7 +98,7 @@
 				<a href="javascript:void(0);" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar-collapse"
 					aria-expanded="false"></a> <a href="javascript:void(0);"
-					class="bars"></a> <a class="navbar-brand" href="getItemDT.do"><img
+					class="bars"></a> <a class="navbar-brand" href="/getItemList.do"><img
 					src="/AdminBSBMaterialDesign-master/img/GS_SHOP_logo.png"
 					style="width: 170px; height: 60px; margin-top: -20px;"></a>
 			</div>
@@ -136,8 +136,7 @@
 							aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
 						<ul class="dropdown-menu pull-right">
 
-							<li><a href="/login.do?logout"><i class="material-icons">input</i>Sign
-									Out</a></li>
+							<li><a href="/login.do?logout"><i class="material-icons">input</i>로그아웃</a></li>
 						</ul>
 					</div>
 				</div>
@@ -146,7 +145,7 @@
 			<!-- Menu -->
 			<div class="menu">
 				<ul class="list">
-					<li class="header">MAIN NAVIGATION</li>
+					<li class="header">메인 메뉴</li>
 
 					<li class="active"><a href="javascript:void(0);"
 						class="menu-toggle"> <i class="material-icons">view_list</i> <span>Tables</span>
@@ -173,7 +172,7 @@
 			<!-- Footer -->
 			<div class="legal">
 				<div class="copyright">
-					&copy; 2018 - 2019 <a href="javascript:void(0);">LCJ - Material
+					&copy; 2018 - 2019 <a href="/contact.do">LCJ - Material
 						Design</a>.
 				</div>
 				<div class="version">
@@ -345,24 +344,7 @@
 	
 	
 	
-	<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 </body>
 

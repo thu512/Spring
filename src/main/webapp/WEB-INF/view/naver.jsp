@@ -101,7 +101,7 @@ td{
                  {
                      "targets": 3,
                      "render": function(data, row){
-                         return data+'¿ø'
+                         return parseInt(data)
                      }
                  },{
                 	 "targets": 0,

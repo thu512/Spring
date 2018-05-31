@@ -16,27 +16,27 @@ import lombok.Setter;
 public class ItemDetailVO implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1324786697845539776L;
+     *
+     */
+    private static final long serialVersionUID = 1324786697845539776L;
 
 
-	@Getter
+    @Getter
     @Setter
     @Column(name = "row_num")
     int rn; //리스트 번호
-    
+
     @Getter
     @Setter
     @Column(name = "item_code")
     String ic; //품목 코드
-	
-	@Getter
+
+    @Getter
     @Setter
     @Id
     @Column(name = "sale_date")
     Date sd; //가격일자
-	
+
     @Getter
     @Setter
     @Id
@@ -62,8 +62,6 @@ public class ItemDetailVO implements Serializable {
     @Setter
     @Column(name = "benefit_price")
     int bp; //해택가격
-
-    
 
 
 }
