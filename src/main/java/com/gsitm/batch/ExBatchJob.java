@@ -1,6 +1,8 @@
 package com.gsitm.batch;
 
+import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -13,6 +15,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+import com.google.gson.stream.JsonWriter;
 import com.gsitm.service.ItemService;
 import com.gsitm.vo.ItemDetailVO;
 import com.gsitm.vo.ItemVO;
@@ -49,8 +57,15 @@ public class ExBatchJob {
 
         org.json.JSONArray xmlJSONObj = XML.toJSONObject(itemXML).getJSONObject("response").getJSONObject("body")
                 .getJSONObject("items").getJSONArray("item");
-
-        Gson gson = new Gson();
+        
+        
+        
+    
+        	
+        
+       Gson gson = new Gson();
+        
+        
         ItemVO[] itemVOs = gson.fromJson(xmlJSONObj.toString(), ItemVO[].class);
         List<ItemVO> items = Arrays.asList(itemVOs);
         logger.info(items.toString());
@@ -59,7 +74,7 @@ public class ExBatchJob {
 
         Calendar oCalendar = Calendar.getInstance();
 
-        int year = oCalendar.get(Calendar.YEAR);//str.split("-")[0];
+        int year = oCalendar.get(Calendar.YEAR)-1;//str.split("-")[0];
         int month = oCalendar.get(Calendar.MONTH) + 1;
         String day = "01";
         String m = "";
@@ -77,6 +92,7 @@ public class ExBatchJob {
 
         String date = "" + year + "" + m + "" + day;
         for(ItemVO item : items){
+        	logger.info("item_code "+item.getIc());
             String url2 ="http://data.insight.go.kr:8080/openapi/service/PriceInfo/getPriceInfo?ServiceKey=QuZgRdiKTWvGqdxo5L%2Fp8GgyI%2B8Rhq95smUbZd9SyM4I9mxF47WUeR%2BWaPIvMbPFnYekApVVQ%2FDlZyQgDrddGQ%3D%3D&itemCode="+item.getIc()+"&startDate="+date+"&endDate="+date+"pageNo=1&numOfRows=50";
             uri = new URI(url2);
             itemXML = restTemplate.getForObject(uri, String.class);
@@ -86,11 +102,19 @@ public class ExBatchJob {
             	xmlJSONObj2=xmlJSONObj2.getJSONObject("response");
             	if(xmlJSONObj2.has("body")){
                     JSONArray jsonArray = xmlJSONObj2.getJSONObject("body").getJSONObject("items").getJSONArray("item");
-                    gson = new Gson();
-                    ItemDetailVO[] itemDetailVOs = gson.fromJson(jsonArray.toString(), ItemDetailVO[].class);
-                    List<ItemDetailVO> itemsDetail = Arrays.asList(itemDetailVOs);
-                    logger.info(itemsDetail.toString());
-                    itemService.insertItemDetail(itemsDetail, item.getIc());
+                    List<ItemDetailVO> itemsDetail = new ArrayList<ItemDetailVO>();
+                    for(int i=0; i<jsonArray.length(); i++) {
+                    	JSONObject json = jsonArray.getJSONObject(i);
+                    	if(!json.get("dp").equals("")) {
+                    		ItemDetailVO it = gson.fromJson(json.toString(), ItemDetailVO.class);
+                    		itemsDetail.add(it);
+                    	}
+                    }
+                    if(itemsDetail.size()>0) {
+                    	logger.info(itemsDetail.toString());
+                        itemService.insertItemDetail(itemsDetail, item.getIc());
+                    }
+                    
                 }
             }
             

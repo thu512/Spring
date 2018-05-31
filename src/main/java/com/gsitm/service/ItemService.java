@@ -1,9 +1,11 @@
 package com.gsitm.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.gsitm.vo.Chart;
 import com.gsitm.vo.ItemDetailVO;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +47,14 @@ public class ItemService {
 	
 	public int itemCnt(String itemCode) {
 		return itemDao.itemCnt(itemCode);
+	}
+	
+	
+	
+	public List<Chart> getChart() {
+		return itemDao.getChart();
+	}
+	public List<Chart> getChart2() {
+		return itemDao.getChart2();
 	}
 }

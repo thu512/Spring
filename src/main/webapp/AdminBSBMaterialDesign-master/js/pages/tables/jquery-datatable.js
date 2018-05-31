@@ -4656,7 +4656,7 @@ $(function () {
                 {
                     "targets": 5,
                     "render": function(data, row){
-                        return '<button type="button" class="btn btn-success" onclick="location.href=\'/getNaver.do?pn='+data+'\' ">최저가 사러가기</button>'
+                        return '<button type="button" class="btn btn-success"  onclick="location.href=\'/getNaver.do?pn='+data+'\' ">최저가 사러가기</button>'
                     }
                 },
                 { width: '100px', targets: 4 },

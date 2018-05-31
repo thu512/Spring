@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.gsitm.service.ItemService;
+import com.gsitm.vo.Chart;
 import com.gsitm.vo.DatatablesVO;
 import com.gsitm.vo.ItemDetailVO;
 import com.gsitm.vo.ItemVO;
@@ -52,12 +53,25 @@ public class ItemController {
 
     }
 
-    @RequestMapping(value = "/index.do", method = RequestMethod.GET)
-    public String getItemDetail(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
-                                Model model, ItemVO itemVO) throws Exception {
+    @RequestMapping(value = "/useCpu.do", method = RequestMethod.GET)
+    public ModelAndView getItemDetail(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
+    		ModelAndView mv, ItemVO itemVO) throws Exception {
 
-
-        return "index";
+    	mv.setViewName("/useCpu");
+        return mv;
+    }
+    
+    
+    @RequestMapping(value = "/chart.do", method = RequestMethod.GET)
+    public ModelAndView getChart(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param,
+    		ModelAndView mv, ItemVO itemVO) throws Exception {
+    	// 통계 데이터 내려주기
+    	List<Chart> data = itemService.getChart();
+    	List<Chart> data2 = itemService.getChart2();
+    	mv.addObject("data", data);
+    	mv.addObject("data2", data2);
+    	mv.setViewName("/chart");
+        return mv;
     }
     
   //데이터 테이블 처리
@@ -84,7 +98,7 @@ public class ItemController {
   	
   	
   	@RequestMapping(value="/getNaver.do", method = RequestMethod.GET)
-  	public ModelAndView getNaver(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param, Model model, ItemVO itemVO, DatatablesVO dtVO) throws Exception {
+  	public ModelAndView getNaver(ModelAndView mv, HttpServletRequest request, HttpServletResponse response, HashMap<String, String> param, Model model, ItemVO itemVO, DatatablesVO dtVO) throws Exception {
   		request.setCharacterEncoding("utf-8");
 
   		logger.info("파라미터"+request.getParameter("pn"));
@@ -113,8 +127,9 @@ public class ItemController {
         NaverItemVO[] naverItemVOs = gson.fromJson(json.getJSONArray("items").toString(), NaverItemVO[].class);
         List<NaverItemVO> items = Arrays.asList(naverItemVOs);
         logger.info(items.toString());
-  		
-  		return null;
+  		mv.addObject("item", items);
+        mv.setViewName("/naver");
+  		return mv;
   	}
 
 }

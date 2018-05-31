@@ -38,6 +38,4 @@ public class ItemVO implements Serializable{
 	String in; //품목 명
 
 	
-
-
 }
