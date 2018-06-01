@@ -44,7 +44,7 @@
                             <a href="/AdminBSBMaterialDesign-master/pages/examples/sign-up.html">회원가입!</a>
                         </div>
                         <div class="col-xs-6 align-right">
-                            <a href="/AdminBSBMaterialDesign-master/pages/examples/forgot-password.html">비밀번호를 잊으셨나요?</a>
+                            <a href="/AdminBSBMaterialDesign-master/pages/examples/forgot-password.html">비밀번호 몰라?</a>
                         </div>
                     </div>
                 </form>

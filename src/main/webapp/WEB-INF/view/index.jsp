@@ -16,8 +16,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-<title>Welcome To | Bootstrap Based Admin Template - Material
-	Design</title>
+<title>GS SHOP</title>
 <!-- Favicon-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
